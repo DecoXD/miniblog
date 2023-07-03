@@ -1,0 +1,28 @@
+<div class="form-section">
+    <form action="/register" method="post" class="form-container">
+    
+        <h3 class="fs-1 text-center">Register</h3>
+        <label class="form-item" >
+            <span>Name</span>
+            <input type="text" name="name" class="form-input" required>
+        </label>
+        <label  class="form-item">
+            <span>Login</span>
+            <input type="text" name="login" class="form-input" required >
+        </label>
+        <label  class="form-item">
+            <span>Password</span>
+            <input type="password" name="password"class="form-input"  required>
+        </label>
+        <label  class="form-item">
+            <span>Confirm password</span>
+            <input type="password" name="confirmPassword" class="form-input" required>
+        </label>
+    
+        <button type="submit" class="btn btn-primary btn-lg">Register</button>
+    
+    </form>
+    {{#if messages.message}}
+        <p class="error-msg">{{messages.message}}</p>
+    {{/if}}
+</div>

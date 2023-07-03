@@ -5,7 +5,10 @@
 }
 
 html{
-
+font-size: 62.5%;
+}
+body{
+    font-size: 1.6rem;
 }
 
 
@@ -16,4 +19,12 @@ html{
 
 .container-fluid a {
     color: #000;
+}
+
+.error-msg{
+    padding: .3rem;
+    background-color: rgba(88, 3, 3, 0.411);
+    text-align: center;
+    margin-inline: auto;
+    max-width: 45rem;
 }
