@@ -6,14 +6,18 @@ const FileStore = require('session-file-store')(session)
 const flash = require('express-flash')
 //import conection with MySQL
 const conn = require('./db/conn');
-const authRouter = require('./routes/AuthRoute');
+
 
 //models
 const User = require('./models/User');
 const Post = require('./models/Post');
 //middleware to check authentication
 const { checkAuth } = require('./helpers/checkAuth');
+//User controllers
 const AuthController = require('./controllers/AuthController');
+const authRouter = require('./routes/AuthRoute');
+//Post controller
+const postRouter = require('./routes/PostRoute');
 
 
 
@@ -58,7 +62,7 @@ app.use((req,res,next) => {
 })
 
 
-// app.use('/posts',postsRouter)
+app.use('/posts',postRouter)
 app.use('/',authRouter)
 //get routes
 
