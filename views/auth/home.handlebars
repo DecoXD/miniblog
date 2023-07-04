@@ -7,11 +7,11 @@
         <div class="card-body">
         <h5 class="card-title">{{this.title}}</h5>
         
-        <p class="tag-container"></p>
+        <p class="tag-container">
         {{#each this.tag}}
             <span class="post-tag">#{{this}}</span>
         {{/each }}</p>
-        <a href="/posts/details" class="btn btn-primary">View More</a>
+        <a href="/posts/details/{{this.id}}" class="btn btn-primary">View More</a>
     </div>
     </div>
    {{/each}} 

@@ -1,1 +1,29 @@
-<h1>details</h1>
+{{#each postData}}
+    <div class="post-section">
+    <div class="post-container">
+        <div class="user-details">
+            <div class="profile-image-box">
+                <img src="https://images.unsplash.com/photo-1687360440094-949b8fe71c8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwyMXx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="user" class="profile-image" >
+            </div>
+            <span>{{this.[User.name]}}</span>
+        </div>
+        <p class="tag-container">
+            {{#each this.tag}}
+                <span class="post-tag">#{{this}}</span>
+            {{/each }}
+        </p>
+        <img src="{{this.image}}" alt="post image" class="post-image">
+       <p>{{this.title}}</p>
+       <div class="comment-container">
+        <p>comentarios</p>
+            {{!-- se tiver comentários... --}}
+       </div>
+       <form method="/comment" method="post">
+            <input type="hidden" name="authorId" value="{{session.userid}}">
+            <input type="hidden" name="authorId" value="{{session.userid}}">
+            <textarea name="comment"  cols="30" rows="1" placeholder="insira um comentário"></textarea>
+            <button type="submit">enviar</button>
+       </form>
+    </div>
+</div>
+{{/each}}

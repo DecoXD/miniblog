@@ -61,6 +61,23 @@ module.exports = class PostController {
     }
 
     static async details(req,res) {
-        res.render('posts/details')
+        const {id} = req.params;
+    
+        const posts = await Post.findOne({raw:true,where:{id},include:User})
+        //ajustar a passagem dos posts e das tags
+        const postData = [posts]           
+        postData.forEach((post) =>{
+                 post.tag = post.tag.split(',')
+             })
+        // pull the comment model and include in posts model,  in comment model add author and comment fields
+    
+        
+        if(postData.length == 0 ) {
+            res.redirect('/')
+            //i can add a flash messages in the body , but i'll think more about this
+            return 
+        }
+
+        res.render('posts/details',{postData})
     }
 }

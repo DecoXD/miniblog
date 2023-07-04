@@ -7,8 +7,7 @@ const Post = require("../models/Post");
 router.post('/create',PostController.createPost)
 
 //GET ROUTES
-
-router.get('/details', PostController.details)
+router.get('/details/:id', PostController.details)
 router.get('/create', PostController.create)
 
 
