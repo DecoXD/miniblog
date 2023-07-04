@@ -11,6 +11,8 @@ const conn = require('./db/conn');
 //models
 const User = require('./models/User');
 const Post = require('./models/Post');
+const Comment = require('./models/Comment');
+
 //middleware to check authentication
 const { checkAuth } = require('./helpers/checkAuth');
 //User controllers
@@ -65,8 +67,6 @@ app.use((req,res,next) => {
 app.use('/posts',postRouter)
 app.use('/',authRouter)
 //get routes
-
-
 conn.sync({force:false}).then(() => {
     app.listen(3000)
 })

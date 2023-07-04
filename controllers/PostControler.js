@@ -1,3 +1,4 @@
+const Comment = require("../models/Comment");
 const Post = require("../models/Post");
 const User = require("../models/User");
 
@@ -60,15 +61,21 @@ module.exports = class PostController {
         
     }
 
-    static async details(req,res) {
+    static async postDetails(req,res) {
         const {id} = req.params;
     
-        const posts = await Post.findOne({raw:true,where:{id},include:User})
+        const posts = await Post.findOne(
+            {raw:true,
+            where:{id},
+            include:[User]})
+        
         //ajustar a passagem dos posts e das tags
         const postData = [posts]           
         postData.forEach((post) =>{
                  post.tag = post.tag.split(',')
              })
+        const postComments = await Comment.findAll({raw:true,where:{PostId:id}, include:User})
+        console.log(postComments)
         // pull the comment model and include in posts model,  in comment model add author and comment fields
     
         
@@ -78,6 +85,21 @@ module.exports = class PostController {
             return 
         }
 
-        res.render('posts/details',{postData})
+        res.render('posts/details',{postData,postComments})
+    }
+
+    static async addComment(req,res) {
+        
+        const {id,title} = req.body;
+        const UserId = req.session.userid
+        console.log(id,title)
+        const userComment = {
+            UserId,
+            title,
+            PostId:id
+        }
+        console.log(userComment)
+        await Comment.create(userComment)
+        res.redirect(`/posts/details/${id}`)
     }
 }
