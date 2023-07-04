@@ -1,1 +1,18 @@
-<h1></h1>
+<h1>todos os posts</h1>
+
+{{#if postData }}
+    {{#each postData}}
+        <div class="card" style="max-width: 30rem;">
+        <img src="{{this.image}}" class="card-img-top" alt="post-image">
+        <div class="card-body">
+        <h5 class="card-title">{{this.title}}</h5>
+        
+        <p class="tag-container"></p>
+        {{#each this.tag}}
+            <span class="post-tag">#{{this}}</span>
+        {{/each }}</p>
+        <a href="/posts/details" class="btn btn-primary">View More</a>
+    </div>
+    </div>
+   {{/each}} 
+{{/if}}

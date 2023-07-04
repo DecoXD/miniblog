@@ -1,9 +1,20 @@
 const User = require("../models/User")
-const bcrypt = require('bcrypt')
+const Post = require("../models/Post");
+const bcrypt = require('bcrypt');
 module.exports = class AuthController {
 
-    static homePage (req,res) {
-        res.render('auth/home')
+    static async homePage (req,res) {
+        const posts = await Post.findAll({raw:true})
+       //ajustar a passagem dos posts e das tags
+        const postData = [...posts] 
+        if(posts.length > 0){
+            postData.forEach((post) =>{
+                post.tag = post.tag.split(',')
+            })
+
+        }
+        
+        res.render('auth/home',{postData})
     }
     static login (req,res) {
         const {userid} = req.session;

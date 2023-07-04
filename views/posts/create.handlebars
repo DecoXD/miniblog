@@ -1,19 +1,22 @@
 
 <div class="form-section">
    <h3 class="fs-1 text-center"> Create Post</h3>
-    <form action="/create" method="POST" class="form-container">
+    <form action="/posts/create" method="POST" class="form-container">
         <label class="form-item">
             <span>title</span>
-            <input type="text" name="title" class="form-input" >
+            <input type="text" name="title" class="form-input" required >
         </label>
         <label class="form-item">
             <span>tags</span>
-            <input type="text" name="tags"  class="form-input">
+            <input type="text" name="tag"  class="form-input" required>
         </label>
         <label class="form-item">
             <span>image</span>
-            <input type="text" name="image"  class="form-input">
+            <input type="text" name="image"  class="form-input" required>
         </label>
         <button type="submit" class="btn btn-primary">Create</button>
     </form>
+    {{#if messages.message}}
+        <p class="error-msg"> {{messages.message}}</p>
+    {{/if}}
 </div>

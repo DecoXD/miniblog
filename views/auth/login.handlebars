@@ -15,4 +15,7 @@
         <button type="submit" class="btn btn-primary btn-lg">login</button>
     
     </form>
+    {{#if messages.message}}
+        <p class="error-msg"> {{messages.message}}</p>
+    {{/if}}
 </div>

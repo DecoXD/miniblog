@@ -67,6 +67,6 @@ app.use('/',authRouter)
 //get routes
 
 
-conn.sync({force:true}).then(() => {
+conn.sync({force:false}).then(() => {
     app.listen(3000)
 })
