@@ -9,6 +9,10 @@ const User = conn.define('Users',{
         type:DataTypes.STRING,
         required:true
     },
+    profileImage:{
+        type:DataTypes.STRING,
+        required:true
+    },
     password:{
         type:DataTypes.STRING,
         required:true

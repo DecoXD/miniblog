@@ -3,6 +3,20 @@ const Post = require("../models/Post");
 const bcrypt = require('bcrypt');
 module.exports = class AuthController {
 
+    static async createProfileImage() {
+        try {
+            const url = 'https://dog.ceo/api/breeds/image/random'
+            const dogImage = await fetch(url)
+            const {message:image} = await dogImage.json()
+            return image
+            
+        } catch (error) {
+            console.log('error na foto de perfil')
+            return null
+        }
+
+    }
+
     static async homePage (req,res) {
         const posts = await Post.findAll({raw:true})
        //ajustar a passagem dos posts e das tags
@@ -16,6 +30,7 @@ module.exports = class AuthController {
         
         res.render('auth/home',{postData})
     }
+
     static login (req,res) {
         const {userid} = req.session;
         if(userid){
@@ -24,6 +39,7 @@ module.exports = class AuthController {
         }
         res.render('auth/login')
     }
+
     static async loginPost (req,res) {
         try {
             const {login, password} = req.body;
@@ -45,10 +61,8 @@ module.exports = class AuthController {
             res.render('auth/login');
             return
         }
-       
-        
-
     }
+
     static register (req,res) {
         const {userid} = req.session;
         if(userid){
@@ -57,8 +71,10 @@ module.exports = class AuthController {
         }
         res.render('auth/register')
     }
+
     static async registerPost (req,res) {
-       try {
+        try {
+            
             const{name,login,password,confirmPassword} = req.body;
             
             //checar password e confirm
@@ -84,11 +100,21 @@ module.exports = class AuthController {
             const salt = bcrypt.genSaltSync(10)
             const hashPassword = bcrypt.hashSync(password,salt)
             
+            //buscar imagem de perfil aleatória
+            const profileImage = await AuthController.createProfileImage()
+
+            //checar se a imagem veio
+            if(!profileImage) {
+                req.flash('message','ocorreu um erro tente novamente ')
+                res.render('auth/register')
+                return
+            }
             //criar usuário
             const userData = {
                 name,
                 login,
-                password:hashPassword
+                password:hashPassword,
+                profileImage
             } 
             const user = await User.create(userData)
             // altera a sessão para o id do usuário e redireciona para home 
@@ -102,10 +128,12 @@ module.exports = class AuthController {
             return
        }
     }
+
     static async logout (req,res) {
         await req.session.destroy()
         res.redirect('/')
     }
+
     static async dashboard (req,res) {
        res.render('auth/dashboard')
     }

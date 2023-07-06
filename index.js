@@ -67,6 +67,6 @@ app.use((req,res,next) => {
 app.use('/posts',postRouter)
 app.use('/',authRouter)
 //get routes
-conn.sync({force:false}).then(() => {
+conn.sync({force:true}).then(() => {
     app.listen(3000)
 })
