@@ -11,7 +11,6 @@ const { checkAuth } = require('../helpers/checkAuth');
 router.post("/register",AuthController.registerPost)
 router.post("/login",AuthController.loginPost)
 
-
 //GET ROUTES
 router.get("/dashboard",checkAuth,AuthController.dashboard)
 router.get("/logout",AuthController.logout)

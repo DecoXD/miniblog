@@ -1,6 +1,8 @@
+//initialize express
 const express = require('express');
 const exphbs = require('express-handlebars');
 const app  = express();
+//session import
 const session = require('express-session');
 const FileStore = require('session-file-store')(session)
 const flash = require('express-flash')
@@ -67,6 +69,6 @@ app.use((req,res,next) => {
 app.use('/posts',postRouter)
 app.use('/',authRouter)
 //get routes
-conn.sync({force:true}).then(() => {
+conn.sync({force:false}).then(() => {
     app.listen(3000)
 })

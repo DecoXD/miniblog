@@ -135,7 +135,12 @@ module.exports = class AuthController {
     }
 
     static async dashboard (req,res) {
-       res.render('auth/dashboard')
+    const {userid} = req.session
+    const postData = await Post.findAll({raw:true,where:{
+        UserId:userid
+    }})
+       res.render('auth/dashboard',{postData})
     }
 
+    
 }
