@@ -1,6 +1,8 @@
 const User = require("../models/User")
 const Post = require("../models/Post");
 const bcrypt = require('bcrypt');
+const { Op } = require('sequelize');
+
 module.exports = class AuthController {
 
     static async createProfileImage() {
@@ -18,7 +20,15 @@ module.exports = class AuthController {
     }
 
     static async homePage (req,res) {
-        const posts = await Post.findAll({raw:true})
+        let search = ''
+
+        if(req.query.search){
+            search = req.query.search
+        }
+        
+        const posts = await Post.findAll({raw:true,where:{
+            tag:{[Op.like]:`%${search}%`}
+        }})
        //ajustar a passagem dos posts e das tags
         const postData = [...posts] 
         if(posts.length > 0){

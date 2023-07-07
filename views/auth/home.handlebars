@@ -1,18 +1,24 @@
-<h1>todos os posts</h1>
-
-{{#if postData }}
-    {{#each postData}}
-        <div class="card" style="max-width: 30rem;">
-        <img src="{{this.image}}" class="card-img-top" alt="post-image">
-        <div class="card-body">
-        <h5 class="card-title">{{this.title}}</h5>
+    <div class="home-page">
+    <h1 class="fs-1">todos os posts</h1>
+    <form class="d-flex search-form" role="search" method="get">
+        <input class="form-control me-2" type="search" placeholder="Procure por tags" aria-label="Search" name="search">
+        <button class="btn btn-primary " type="submit">Search</button>
+    </form>
+    
+    {{#if postData }}
+        {{#each postData}}
+        <div class="card" style="max-width: 40rem;">
+                <img src="{{this.image}}" class="card-img-top" alt="post-image">
+            <div class="card-body">
+                <h5 class="card-title">{{this.title}}</h5>
         
-        <p class="tag-container">
-        {{#each this.tag}}
-            <span class="post-tag">#{{this}}</span>
-        {{/each }}</p>
-        <a href="/posts/details/{{this.id}}" class="btn btn-primary">View More</a>
-    </div>
-    </div>
-   {{/each}} 
-{{/if}}
+                <p class="tag-container">
+                {{#each this.tag}}
+                    <span class="post-tag">#{{this}}</span>
+                {{/each }}</p>
+                <a href="/posts/details/{{this.id}}" class="post-btn">View More</a>
+        </div>
+        </div>
+       {{/each}}
+    {{/if}}
+</div>

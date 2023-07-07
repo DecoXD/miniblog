@@ -34,3 +34,32 @@ body{
     height: auto;
     object-fit: contain;
 }
+
+.home-page{
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    margin-top: 4rem;
+    align-items: center;
+}
+
+.card-body{
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    padding: 1rem;
+}
+.post-btn{
+   color: #fff;
+   text-decoration: none;
+   border: 1px solid #000;
+   background-color: #000;
+   border-radius: 20px;
+   padding: .8rem;
+   align-self: center;
+}
+
+.search-form{
+    width: 100%;
+    max-width: 50rem;
+}
