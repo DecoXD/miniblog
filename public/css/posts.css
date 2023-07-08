@@ -19,6 +19,7 @@ padding: clamp(1rem, .5rem + 2vw , 2.5rem);
 }
 
 .user-details{
+    position: relative;
     display: flex;
     align-items: end;
     gap: 1rem;
@@ -109,6 +110,8 @@ color: rebeccapurple;
     word-wrap: break-word;
 }
 
+
+
 .delete-comment-form {
     
     position: absolute ;
@@ -119,3 +122,14 @@ color: rebeccapurple;
     border: none;
     color: red;
 }
+
+.post-btn{
+    color: #fff;
+    text-decoration: none;
+    border: 1px solid #000;
+    background-color: #000;
+    border-radius: 20px;
+    padding: .8rem;
+    align-self: center;
+ }
+ 

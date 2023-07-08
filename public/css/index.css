@@ -49,15 +49,6 @@ body{
     gap: 1.2rem;
     padding: 1rem;
 }
-.post-btn{
-   color: #fff;
-   text-decoration: none;
-   border: 1px solid #000;
-   background-color: #000;
-   border-radius: 20px;
-   padding: .8rem;
-   align-self: center;
-}
 
 .search-form{
     width: 100%;

@@ -28,25 +28,20 @@
                             </div>
                         <span class="fw-bold">{{this.[User.name]}}:</span>
                         <span class="comment">{{this.title}}</span>
-                    </div>
-
-                    
                     <form action="/posts/comment/delete" method="POST" class="delete-comment-form">
-                        <label  class="delete-icon">
-                            <button type="submit" ><i class="bi bi-x-circle-fill"></i></button>
                             <input type="hidden" name="id" value="{{this.id}}">
                             <input type="hidden" name="UserId" value="{{this.UserId}}">
                             <input type="hidden" name="PostId" value="{{this.PostId}}">
-                        </label>
+                        
+                            <button type="submit" ><i class="bi bi-x-circle-fill"></i></button>
+                       
                         </form>   
-                   
+                    </div>
                    
                     <hr>
                 {{/each}}
-
-
             {{/if}}
-            {{!-- se tiver comentários... --}}
+           
        </div>
        <form  method="post" class="form-comment">
             <input type="hidden" name="id" value="{{this.id}}">
